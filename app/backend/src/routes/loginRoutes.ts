@@ -8,3 +8,4 @@ const startLogin = new LoginController();
 loginRoute.post('/', (req, res) => startLogin.login(req, res));
 
 export default loginRoute;
+
