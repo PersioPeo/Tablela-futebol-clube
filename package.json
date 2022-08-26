@@ -21,14 +21,21 @@
     "@testing-library/jest-dom": "5.15.0",
     "@testing-library/react": "11.2.7",
     "@testing-library/user-event": "12.8.3",
+    "@types/chai": "^4.3.3",
+    "@types/mocha": "^9.1.1",
+    "@types/sinon": "^10.0.13",
     "axios": "^0.26.0",
+    "chai": "^4.3.6",
+    "chai-http": "^4.3.0",
     "dotenv": "10.0.0",
     "jest": "26.6.0",
-    "mocha": "9.2.0",
+    "mocha": "^9.2.0",
     "mysql2": "2.3.3",
     "nyc": "15.1.0",
     "sequelize": "^6.11.0",
-    "sequelize-cli": "^6.4.1"
+    "sequelize-cli": "^6.4.1",
+    "sinon": "^14.0.0",
+    "ts-node": "^10.9.1"
   },
   "dependencies": {
     "camelcase": "6.3.0",
