@@ -1,20 +1,20 @@
 import { DataTypes, Model } from 'sequelize';
 import db from '.';
 
-class users extends Model {
+class Users extends Model {
   id: number;
   username: string;
   role: string;
   email: string;
   password: string;
 }
-users.init(
+Users.init(
   {
     id: {
       allowNull: false,
       autoIncrement: true,
       primaryKey: true,
-      type: DataTypes.INTEGER,
+      type: DataTypes.INTEGER.UNSIGNED,
     },
     username: {
       allowNull: false,
@@ -41,4 +41,4 @@ users.init(
     timestamps: false,
   },
 );
-export default users;
+export default Users;

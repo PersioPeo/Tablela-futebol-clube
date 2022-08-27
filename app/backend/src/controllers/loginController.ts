@@ -4,6 +4,7 @@ import ErrorType from '../middleware/errorType';
 
 class LoginController {
   service = new LoginService();
+
   async login(req: Request, res: Response) {
     const { email, password } = req.body;
     if (!email || !password) {
@@ -14,6 +15,15 @@ class LoginController {
       throw new ErrorType(401, 'Incorrect email or password');
     }
     return res.status(200).json({ token });
+  }
+
+  static async tokenValidation(req: Request, res: Response) {
+    const token = req.headers.authorization;
+    if (!token) {
+      throw new ErrorType(401, 'Token invalid');
+    }
+    const role = LoginService.validate(token);
+    return res.status(200).json({ role });
   }
 }
 

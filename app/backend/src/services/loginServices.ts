@@ -1,9 +1,9 @@
 import Jwt from '../helps/token';
-import users from '../database/models/users.model';
+import Users from '../database/models/users';
 import ILogin from '../interface/ILogin';
 
 class LoginService implements ILogin {
-  constructor(private user = users) {
+  constructor(private user = Users) {
     this.user = user;
   }
 
