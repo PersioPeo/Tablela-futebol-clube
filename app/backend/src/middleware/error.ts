@@ -13,7 +13,7 @@ export default class Errors {
       const message = 'There is no team with such id!';
       res.status(status).json({ status, message });
     } else {
-      const status = error.status || 505;
+      const status = error.status || 500;
       const message = error.message || 'Something went wrong';
       res.status(status).json({ message });
     }
