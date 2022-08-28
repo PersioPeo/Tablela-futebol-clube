@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import LoginService from '../services/loginServices';
-import ErrorType from '../middleware/errorType';
+import ErrorType from '../middleware/ErrorType';
 
 class LoginController {
   service = new LoginService();
