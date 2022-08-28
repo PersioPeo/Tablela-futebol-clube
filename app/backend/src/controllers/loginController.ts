@@ -3,7 +3,11 @@ import LoginService from '../services/loginServices';
 import ErrorType from '../middleware/ErrorType';
 
 class LoginController {
-  service = new LoginService();
+  private service: LoginService;
+
+  constructor() {
+    this.service = new LoginService();
+  }
 
   async login(req: Request, res: Response) {
     const { email, password } = req.body;
