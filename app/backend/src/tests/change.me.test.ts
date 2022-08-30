@@ -17,7 +17,7 @@ describe('Seu teste', () => {
    * Exemplo do uso de stubs com tipos
    */
 
-  let chaiHttpResponse: Response;
+  // let chaiHttpResponse: Response;
 
   // before(async () => {
   //   sinon
