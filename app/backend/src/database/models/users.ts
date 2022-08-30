@@ -6,7 +6,7 @@ const users = {
     allowNull: false,
     autoIncrement: true,
     primaryKey: true,
-    type: DataTypes.INTEGER,
+    type: DataTypes.INTEGER.UNSIGNED,
   },
   username: {
     allowNull: false,
@@ -26,7 +26,14 @@ const users = {
   },
 };
 
-class Users extends Model {}
+class Users extends Model {
+  id: number;
+  username: string;
+  role: string;
+  email: string;
+  password: string;
+}
+
 Users.init(users, {
   tableName: 'users',
   modelName: 'users',
