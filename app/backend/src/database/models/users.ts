@@ -1,4 +1,4 @@
-import { DataTypes, Model, INTEGER } from 'sequelize';
+import { DataTypes, Model } from 'sequelize';
 import db from '.';
 
 const users = {
