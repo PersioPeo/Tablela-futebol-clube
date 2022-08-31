@@ -17,8 +17,8 @@ class LoginController {
   static async validation(req: Request, res: Response) {
     const result = req.headers.authorization;
     if (!result) throw new ErrorType(401, 'Token invalid');
-    const resultRole = ServiceLogin.validate(result);
-    return res.status(200).json({ resultRole });
+    const role = ServiceLogin.validate(result);
+    return res.status(200).json({ role });
   }
 }
 

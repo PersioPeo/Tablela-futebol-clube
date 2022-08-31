@@ -1,3 +1,8 @@
-export default interface Ilogin{
-  login(data: { email: string; password: string }): Promise<string | void>
+export type DATA = {
+  email: string;
+  password: string;
+};
+
+export default interface Ilogin {
+  login(data: DATA): Promise<string | void>
 }
