@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import ServiceLogin from '../service/loginservice';
+import ServiceLogin from '../services/loginService';
 import ErrorType from '../util/middleware/ErrorType';
 
 class LoginController {
