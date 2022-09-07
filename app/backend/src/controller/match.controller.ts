@@ -34,16 +34,10 @@ class ControllerMatches {
     res.status(200).json({ message: 'Goals update' });
   };
 
-  static tokenValida = (req: Request, _res: Response, next: NextFunction) => {
+  static jwtValidation = (req: Request, res: Response, next: NextFunction) => {
     const token = req.headers.authorization;
-    if (!token) {
-      throw new ErrorType(401, 'Token must be a valid token');
-    }
     if (token) {
-      const payload = Jwt.verify(token);
-      if (!payload || payload === null) {
-        throw new ErrorType(401, 'Token must be a valid token');
-      }
+      Jwt.verify(token);
     }
     next();
   };

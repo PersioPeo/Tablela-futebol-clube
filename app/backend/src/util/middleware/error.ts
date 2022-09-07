@@ -8,14 +8,15 @@ export default class Errors {
     res: Response,
     _next: NextFunction,
   ) => {
-    if (error.name === 'SequelizeForeignKeyConstraintError') {
-      const status = 404;
-      const message = 'There is no team with such id!';
-      res.status(status).json({ status, message });
-    } else {
-      const status = error.status || 505;
-      const message = error.message || 'Something went wrong';
-      res.status(status).json({ message });
+    const status = error.status || 505;
+    const message = error.message || 'Something went wrong';
+    if (error.name === 'JsonWebTokenError') {
+      return res.status(401).json({ message: 'Token must be a valid token' });
+    } if (error.name === 'SequelizeForeignKeyConstraintError') {
+      return res
+        .status(404)
+        .json({ message: 'There is no team with such id!' });
     }
+    return res.status(status).json({ message });
   };
 }

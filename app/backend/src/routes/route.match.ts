@@ -6,8 +6,8 @@ const matchesRoute = Router();
 const startMatches = new ControllerMatches();
 
 matchesRoute.get('/', startMatches.pegar);
-matchesRoute.post('/', ControllerMatches.tokenValida, startMatches.criar);
-matchesRoute.patch('/:id/finish', ControllerMatches.tokenValida, startMatches.rotaProgress);
-matchesRoute.patch('/:id', ControllerMatches.tokenValida, startMatches.rotaGoals);
+matchesRoute.post('/', ControllerMatches.jwtValidation, startMatches.criar);
+matchesRoute.patch('/:id/finish', startMatches.rotaProgress);
+matchesRoute.patch('/:id', startMatches.rotaGoals);
 
 export default matchesRoute;
