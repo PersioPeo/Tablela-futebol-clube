@@ -10,8 +10,10 @@ export default interface iLeaderboard {
   goalsBalance: number;
   efficiency: number;
 }
-export type pontos = Array<iLeaderboard> | void;
+
+export type arriLead = Array<iLeaderboard> | void;
+
 export interface Leaderboard {
-  finishMatch(type: string): Promise<pontos>;
-  finishAllMatches(): Promise<pontos>;
+  finishMatch(type: string): Promise<arriLead>;
+  finishAllMatches(): Promise<arriLead>;
 }
