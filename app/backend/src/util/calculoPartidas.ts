@@ -72,21 +72,21 @@ export const calcularPontos = (type: string, matches: ImatchReturn[]) => {
 
 // Critério de desempates
 
-export const classificacao = (x: Leaderboard, y: Leaderboard) => {
-  if (x.totalPoints < y.totalPoints) return 1;
-  if (x.totalPoints > y.totalPoints) return -1;
+export const classificacao = (H: Leaderboard, W: Leaderboard) => {
+  if (H.totalPoints < W.totalPoints) return 1;
+  if (H.totalPoints > W.totalPoints) return -1;
 
-  if (x.totalVictories < y.totalVictories) return 1;
-  if (x.totalVictories > y.totalVictories) return -1;
+  if (H.totalVictories < W.totalVictories) return 1;
+  if (H.totalVictories > W.totalVictories) return -1;
 
-  if (x.goalsBalance < y.goalsBalance) return 1;
-  if (x.goalsBalance > y.goalsBalance) return -1;
+  if (H.goalsBalance < W.goalsBalance) return 1;
+  if (H.goalsBalance > W.goalsBalance) return -1;
 
-  if (x.goalsFavor < y.goalsFavor) return 1;
-  if (x.goalsFavor > y.goalsFavor) return -1;
+  if (H.goalsFavor < W.goalsFavor) return 1;
+  if (H.goalsFavor > W.goalsFavor) return -1;
 
-  if (x.goalsOwn < y.goalsOwn) return 1;
-  if (x.goalsOwn > y.goalsOwn) return -1;
+  if (H.goalsOwn < W.goalsOwn) return 1;
+  if (H.goalsOwn > W.goalsOwn) return -1;
 
   return 0;
 };
