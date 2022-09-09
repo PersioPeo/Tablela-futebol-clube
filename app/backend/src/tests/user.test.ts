@@ -14,7 +14,7 @@ chai.use(chaiHttp);
 
 const { expect } = chai;
 
-describe('Seu teste', () => {
+describe('Teste', () => {
   /**
    * Exemplo do uso de stubs com tipos
    */
@@ -39,7 +39,7 @@ describe('Seu teste', () => {
     sinon.stub(users, 'findOne').resolves(undefined);
 
     const test = await chai.request(app).post('/login').send({
-      email: 'user.com',
+      email: 'useruser.com',
       password: '$2a$08$Y8Abi8jXvsXyqm.rmp0B.uQBA5qUz7T6Ghlg/CvVr/gLxYj5UAZVO',
     }).set('autorization', tokenTest);
     expect(test.status).to.be.eq(401);

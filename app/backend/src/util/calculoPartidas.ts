@@ -4,24 +4,20 @@ import Leaderboard from './interfaces/Leaderboard';
 
 export const ecVitoria = (type: string, matches: Imatches[]) => {
   let vitoria = 0;
-
   if (type === 'teamHome') {
     vitoria = matches.reduce((acc: number, curr: Imatches) => {
       if (curr.homeTeamGoals > curr.awayTeamGoals) return acc + 1;
       return acc;
     }, 0);
   }
-
   if (type === 'teamAway') {
     vitoria = matches.reduce((acc: number, curr: Imatches) => {
       if (curr.homeTeamGoals < curr.awayTeamGoals) return acc + 1;
       return acc;
     }, 0);
   }
-
   return vitoria;
 };
-
 export const ecEmpate = (matches: Imatches[]) => {
   const empate = matches.reduce((acc: number, curr: Imatches) => {
     if (curr.homeTeamGoals === curr.awayTeamGoals) return acc + 1;
@@ -29,7 +25,6 @@ export const ecEmpate = (matches: Imatches[]) => {
   }, 0);
   return empate;
 };
-
 export const ecDerrota = (type: string, matches: Imatches[]) => {
   let derrota = 0;
   if (type === 'teamHome') {
@@ -46,7 +41,6 @@ export const ecDerrota = (type: string, matches: Imatches[]) => {
   }
   return derrota;
 };
-
 export const golsEmCasa = (matches: Imatches[]) => {
   const goalsFavor = matches.reduce(
     (acc: number, curr: Imatches) => acc + curr.homeTeamGoals,
@@ -54,7 +48,6 @@ export const golsEmCasa = (matches: Imatches[]) => {
   );
   return goalsFavor;
 };
-
 export const golsFora = (matches: Imatches[]) => {
   const goalsContra = matches.reduce(
     (acc: number, curr: Imatches) => acc + curr.awayTeamGoals,
@@ -62,35 +55,26 @@ export const golsFora = (matches: Imatches[]) => {
   );
   return goalsContra;
 };
-
 export const calcularPontos = (type: string, matches: ImatchReturn[]) => {
   const vitoria = ecVitoria(type, matches);
   const empate = ecEmpate(matches);
   const pontos = vitoria * 3 + empate;
   return pontos;
 };
-
 // Critério de desempates
-
-export const classificacao = (H: Leaderboard, W: Leaderboard) => {
-  if (H.totalPoints < W.totalPoints) return 1;
-  if (H.totalPoints > W.totalPoints) return -1;
-
-  if (H.totalVictories < W.totalVictories) return 1;
-  if (H.totalVictories > W.totalVictories) return -1;
-
-  if (H.goalsBalance < W.goalsBalance) return 1;
-  if (H.goalsBalance > W.goalsBalance) return -1;
-
-  if (H.goalsFavor < W.goalsFavor) return 1;
-  if (H.goalsFavor > W.goalsFavor) return -1;
-
-  if (H.goalsOwn < W.goalsOwn) return 1;
-  if (H.goalsOwn > W.goalsOwn) return -1;
-
+export const classificacao = (tm: Leaderboard, tv: Leaderboard) => {
+  if (tm.totalPoints < tv.totalPoints) return 1;
+  if (tm.totalPoints > tv.totalPoints) return -1;
+  if (tm.totalVictories < tv.totalVictories) return 1;
+  if (tm.totalVictories > tv.totalVictories) return -1;
+  if (tm.goalsBalance < tv.goalsBalance) return 1;
+  if (tm.goalsBalance > tv.goalsBalance) return -1;
+  if (tm.goalsFavor < tv.goalsFavor) return 1;
+  if (tm.goalsFavor > tv.goalsFavor) return -1;
+  if (tm.goalsOwn < tv.goalsOwn) return 1;
+  if (tm.goalsOwn > tv.goalsOwn) return -1;
   return 0;
 };
-
 export const classificacaoEmCasa = ({ teamName, teamHome }: ImatchTeams) => ({
   name: teamName,
   totalPoints: calcularPontos('teamHome', teamHome),
@@ -106,7 +90,6 @@ export const classificacaoEmCasa = ({ teamName, teamHome }: ImatchTeams) => ({
     * 100
   ).toFixed(2),
 });
-
 export const classificacaoFora = ({ teamName, teamAway }: ImatchTeams) => ({
   name: teamName,
   totalPoints: calcularPontos('teamAway', teamAway),
@@ -114,22 +97,20 @@ export const classificacaoFora = ({ teamName, teamAway }: ImatchTeams) => ({
   totalVictories: ecVitoria('teamAway', teamAway),
   totalDraws: ecEmpate(teamAway),
   totalLosses: ecDerrota('teamAway', teamAway),
-  goalsFavor: golsEmCasa(teamAway),
-  goalsOwn: golsFora(teamAway),
-  goalsBalance: golsEmCasa(teamAway) - golsFora(teamAway),
+  goalsFavor: golsFora(teamAway),
+  goalsOwn: golsEmCasa(teamAway),
+  goalsBalance: golsFora(teamAway) - golsEmCasa(teamAway),
   efficiency: +(
     (calcularPontos('teamAway', teamAway) / (teamAway.length * 3))
     * 100
   ).toFixed(2),
 });
-
 const eficiencia = (teamHome: ImatchReturn[], teamAway: ImatchReturn[]) => {
   const point = calcularPontos('teamAway', teamAway) + calcularPontos('teamHome', teamHome);
   const matchs = (teamHome.length + teamAway.length) * 3;
   const eff = Number(((point / matchs) * 100).toFixed(2));
   return eff;
 };
-
 export const placarTotal = ({ teamName, teamHome, teamAway }: ImatchTeams) => ({
   name: teamName,
   totalPoints:
