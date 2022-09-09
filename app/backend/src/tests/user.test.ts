@@ -34,6 +34,18 @@ describe('Seu teste', () => {
     expect(test.body).to.be.an('object');
     sinon.restore();
   });
+
+  it('Verificar login errado', async () => {
+    sinon.stub(users, 'findOne').resolves(undefined);
+
+    const test = await chai.request(app).post('/login').send({
+      email: 'user.com',
+      password: '$2a$08$Y8Abi8jXvsXyqm.rmp0B.uQBA5qUz7T6Ghlg/CvVr/gLxYj5UAZVO',
+    }).set('autorization', tokenTest);
+    expect(test.status).to.be.eq(401);
+    sinon.restore();
+  });
+
 });
 
 
