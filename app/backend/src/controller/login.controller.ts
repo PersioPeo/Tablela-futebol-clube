@@ -7,10 +7,10 @@ class LoginController {
 
   postLogin = async (req: Request, res: Response) => {
     const { email, password } = req.body;
-    if (!password || !email) throw new ErrorType(400, 'All fields must be filled');
+    if (!password || !email) throw new ErrorType(400, 'All fields must be filled'); // Todos os campos devem ser preenchidos
 
     const token = await this.svc.login(req.body);
-    if (token === 'null') throw new ErrorType(401, 'Incorrect email or password');
+    if (token === 'null') throw new ErrorType(401, 'Incorrect email or password');  // senha ou email incorretos
     return res.status(200).json({ token });
   };
 
